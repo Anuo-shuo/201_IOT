@@ -1,41 +1,20 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #define KEY 0
-#include <Blinker.h>
-
-#define BLINKER_PRINT Serial
-#define BLINKER_WIFI
 
 /*！！！注意：代码中print/println均是为了串口调试，可删！！！*/
-char auth[] = "2d020238571d";
 /*char ssid[] = "Anuo";
 char pswd[] = "123456789";*/
 const char* ssid = "Anuo";
 const char* password = "123456789";
 const char* mqtt_server = "123.56.16.193";
 
-BlinkerButton Button1("led");
-BlinkerButton Button2("flash");
-
-int counter = 0;
-
-void button1_callback(const String & state) {
-    BLINKER_LOG("get button state: ", state);
-    digitalWrite(BUILTIN_LED, !digitalRead(BUILTIN_LED));
-}
-void dataRead(const String & data)
-{
-    BLINKER_LOG("Blinker readString: ", data);
-    counter++;
-    Number1.print(counter);
-}
-
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
 char msg[50];
-//int value = 0;
+int value = 0;
 int flag = 0;
 int key_flag = 1;
 //int brightness = 0;
@@ -98,19 +77,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 
   flag=(char)payload[0];
-  
- /* if ((char)payload[0] == '1') {
-    flag = 1;
-  }
-  else if ((char)payload[0] == '0') {
-    flag = 0;
-  }
-  else if ((char)payload[0] == '3') {
-    flag = 3;
-  }
-  else if ((char)payload[0] == '4') {
-    flag = 4;
-  }*/
+
 }
 
 
@@ -122,11 +89,7 @@ void setup() {
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   
-  BLINKER_DEBUG.stream(BLINKER_PRINT);
-  Blinker.begin(auth);//Blinker.begin(auth,ssid,pswd);
-  Blinker.attachData(dataRead);
-  Button1.attach(button1_callback);
-
+  client.setCallback(callback);
   reconnect();
   while (!client.subscribe("LIGHT", 0)) {
     Serial.println("订阅失败;尝试重新订阅！");
@@ -144,7 +107,6 @@ void loop() {
   client.setCallback(callback);
   client.loop();
 
-   Blinker.run(); 
 
 
   switch (flag) {
@@ -166,14 +128,13 @@ void loop() {
     client.publish("DOOR", msg);    /*注：发布格式为 client.publish("主题", msg);*/
   }
   key_flag = digitalRead(KEY);
-
-  /*  long now = millis();
-    if (now - lastMsg > 2000) {
-      lastMsg = now;
-      ++value;
-      snprintf (msg, 50, "%d", value);
-      Serial.print("Publish message: ");+
-      Serial.println(msg);
-      client.publish("WENDU", msg);
-    }*/
+ /* delay(500);
+  value++;
+  if (value==5) {
+    value/=5;
+    snprintf (msg, 50, "{\"Temp\":31,\"Hum\":56,\"Light\":520}");
+    Serial.print("Publish message: ");
+    Serial.println(msg);
+    client.publish("LIGHT", msg);
+  }*/
 }
