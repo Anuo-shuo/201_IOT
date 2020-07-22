@@ -14,7 +14,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
 char msg[50];
-int value = 0;
+//int value = 0;
 int flag = 0;
 int key_flag = 1;
 //int brightness = 0;
