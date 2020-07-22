@@ -16,6 +16,7 @@
 ws://fallingyou.love:8083  
 wss://fallingyou.love:8084
 # 三、项目联调
+经测试，整个系统目前已能稳定运行.  
 ![小程序与服务器联调](https://github.com/Anuo-shuo/201_IOT/blob/master/liantiao-weapp.png)  
 ![小程序与下位机联调1](https://github.com/Anuo-shuo/201_IOT/blob/master/liantiao2.jpg)![小程序与下位机联调2](https://github.com/Anuo-shuo/201_IOT/blob/master/liantiao3.jpg)  
 ![QQ与下位机联调](https://github.com/Anuo-shuo/201_IOT/blob/master/liantiao-qq.jpg)  
