@@ -5,7 +5,7 @@
 # 二、项目构成
 ## 上位机
 ### 1.Python程序（QQ-MQTT.PY)
-![QQ界面](https://github.com/Anuo-shuo/201_IOT/blob/master/qq.jpg)  
+![QQ界面](https://github.com/Anuo-shuo/201_IOT/blob/master/qq.jpg?v8 =64x124)  
 ![Python运行结果](https://github.com/Anuo-shuo/201_IOT/blob/master/py-run.png)
 ### 2.微信小程序
 ![小程序码](https://github.com/Anuo-shuo/201_IOT/blob/master/weapp-id.png)  
