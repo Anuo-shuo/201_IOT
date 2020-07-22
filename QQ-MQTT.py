@@ -1,6 +1,6 @@
 import websocket,threading,time,json,paho.mqtt.client as mqtt,datetime
 
-admin_user=('1812417248','381117429','1873891256','2457280971')
+admin_user=('1812417248')
 
 str_1="{\"action\": \"send_private_msg\",\"params\": {\"user_id\": 1812417248,\"message\": \"我上线啦！\"}}"
 
@@ -81,7 +81,7 @@ def mqtt_init():
     time.sleep(0.2)
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect('127.0.0.1', 1883, 600) 
+    client.connect('123.56.16.193', 1883, 600) 
     client.subscribe('WENDU', qos=0)
     client.subscribe('DOOR', qos=0)
     client.loop_forever() 
