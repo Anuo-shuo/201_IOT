@@ -3,10 +3,9 @@
 #define KEY 0
 
 /*！！！注意：代码中print/println均是为了串口调试，可删！！！*/
-/*char ssid[] = "Anuo";
-char pswd[] = "123456789";*/
-const char* ssid = "Anuo";
-const char* password = "123456789";
+
+const char* ssid = "ssid";
+const char* password = "pwd";
 const char* mqtt_server = "123.56.16.193";
 
 
@@ -110,7 +109,7 @@ void loop() {
 
 
   switch (flag) {
-    case '1': digitalWrite(BUILTIN_LED, LOW); break;  /*注：LOW为关闭*/
+    case '1': digitalWrite(BUILTIN_LED, LOW); break; 
     case '0': digitalWrite(BUILTIN_LED, HIGH); break;
     case '3': {
         digitalWrite(BUILTIN_LED, !digitalRead(BUILTIN_LED));
@@ -128,13 +127,4 @@ void loop() {
     client.publish("DOOR", msg);    /*注：发布格式为 client.publish("主题", msg);*/
   }
   key_flag = digitalRead(KEY);
- /* delay(500);
-  value++;
-  if (value==5) {
-    value/=5;
-    snprintf (msg, 50, "{\"Temp\":31,\"Hum\":56,\"Light\":520}");
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    client.publish("LIGHT", msg);
-  }*/
 }
